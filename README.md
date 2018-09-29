@@ -31,16 +31,18 @@ sudo apt-get install ctags
 		- s: 竖直打开文件
 ## 3. Grepper
 		- F6 打开Grepper，进行关键字搜索
+		- p在新窗口中预览 
 
 ## 4. ctrlp
 		- F4 打开ctrlp，进行文件搜索
 		- ctrl + d按文件名搜索
+			- p 在新窗口中预览
 		- ctrl + x 水平打开窗口
 		- ctrl + v竖直打开窗口
 		- ctrl + p/n历史记录
 		- ctrl + z标记文件，ctrl +o对标记的文件打开
 		- ctrl + t 打开新的tab页
-				- tab页切换： 向左: ,,  向右：,.
+			- tab页切换： 向左: ,,  向右：,.
 ## 5. ]]不同的类间跳转
 ## 6. F7
 		- pep8 check
