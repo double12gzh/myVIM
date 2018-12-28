@@ -71,7 +71,7 @@ sudo apt-get install ctags
 	与git相关，通过与vim-fugitive联合使用。
 		- F9 gitdiff
 ## 11. subline
-
+![image.png](https://cdn-pri.nlark.com/lark/0/2018/png/124229/1538205492046-801aeedd-0da7-4eb1-b4b7-3488f4185ce2.png)
 标签切换： :b1
 
 ## 其它：
