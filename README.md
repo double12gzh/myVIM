@@ -70,8 +70,11 @@ sudo apt-get install ctags
 ## 10. vim-signify(未完)
 	与git相关，通过与vim-fugitive联合使用。
 		- F9 gitdiff
+## 11. subline
 
+标签切换： :b1
 
-	
+## 其它：
+vim docker 镜像：https://cloud.docker.com/u/double12gzh/repository/docker/double12gzh/centos_with_vim
 
 
