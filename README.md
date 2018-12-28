@@ -23,7 +23,7 @@ sudo apt-get install ctags
 ## 1. Grepper
 :Grepper 打开搜索
  :vnew filename 打开搜索到的文件
-![image.png](https://cdn.nlark.com/lark/0/2018/png/124229/1538050439478-7edc0d0d-9617-4258-9da7-a5c504487513.png)
+![image.png](https://img-blog.csdnimg.cn/20181228113940322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d6aG91Yw==,size_16,color_FFFFFF,t_70)
 
 ## 2. NerdTree
 		- F2 打开nerdtree
