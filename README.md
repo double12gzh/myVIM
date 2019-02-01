@@ -75,6 +75,16 @@ sudo apt-get install ctags
 
 标签切换： :b1
 
+## 12. 文件比较之插件法
+:DirDiff file1 file2
+
+## 13. 文件夹比较之diff
+diff -r -u ark-installer_v0.1 ark-installer_v0.2| vim -R -
+diff -rq folder1 folder2
+
+## 14.文件比较之diff
+diff file1 file2 | vim -
+
 ## 其它：
 vim docker 镜像：https://cloud.docker.com/u/double12gzh/repository/docker/double12gzh/centos_with_vim
 
