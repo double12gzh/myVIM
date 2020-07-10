@@ -85,6 +85,12 @@ diff -rq folder1 folder2
 ## 14.文件比较之diff
 diff file1 file2 | vim -
 
+## 15. 代码补全
+ctrl+x+o
+
+## 16. 自动导入
+:w!
+
 ## 其它：
 vim docker 镜像：https://cloud.docker.com/u/double12gzh/repository/docker/double12gzh/centos_with_vim
 
