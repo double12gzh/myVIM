@@ -1,3 +1,4 @@
+set encoding=utf-8
 set nocompatible  " explicitly get out of vi-compatible mode
 filetype off      " required!
 
@@ -16,7 +17,7 @@ Plugin 'flazz/vim-colorschemes'            " Color Schema(https://github.com/fla
 Plugin 'nvie/vim-flake8.git'               " Flake8 plugin for Vim(https://github.com/nvie/vim-flake8)
 Plugin 'rodjek/vim-puppet'                 " Puppet niceties for your Vim setup(https://github.com/rodjek/vim-puppet)
 Plugin 'kien/ctrlp.vim'                    " Fuzzy file, buffer, mru, tag, etc finder(https://github.com/kien/ctrlp.vim)
-Plugin 'Valloric/YouCompleteMe'            " A code-completion engine for Vim
+"Plugin 'Valloric/YouCompleteMe'            " A code-completion engine for Vim
 Plugin 'davidhalter/jedi-vim'              " Using the jedi autocompletion library for VIM
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
@@ -24,6 +25,7 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 
 "begin: markdown
+Plugin 'suan/vim-instant-Markdown'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/mathjax-support-for-mkdp'
@@ -37,6 +39,7 @@ Plugin 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 " vim-scripts repos
 Plugin 'L9'
 Plugin 'python.vim'
+Plugin 'will133/vim-dirdiff'
 
 "自动载入ctags gtags
 if version >= 800
@@ -77,6 +80,8 @@ if version >= 800
     " 使用plus插件解决问题
     let g:gutentags_auto_add_gtags_cscope = 0
 
+		let g:gutentags_plus_nomap = 1
+
     "预览 quickfix 窗口 ctrl-w z 关闭
     Plugin 'skywind3000/vim-preview'
     "P 预览 大p关闭
@@ -84,6 +89,18 @@ if version >= 800
     autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
     noremap <Leader>u :PreviewScroll -1<cr> " 往上滚动预览窗口
     noremap <leader>d :PreviewScroll +1<cr> "  往下滚动预览窗口
+		map <F5> :PreviewTag<CR>
+
+		" 设置gutentags_plus
+    noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
+    noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
+    noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
+    noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
+    noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
+    noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+    noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+    noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
+    noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 endif
 
 Plugin 'w0rp/ale'
@@ -120,6 +137,48 @@ map <F8> ::ALEToggle<CR>
 
 " non github repos
 "Plugin 'git://git.wincent.com/command-t.git'
+"
+
+" vim-signify
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-fugitive'
+" 设置要检查的VCS
+let g:signify_vcs_list = ['git', 'hg']
+" 插入模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
+let g:signify_cursorhold_insert     = 1
+" 正常模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
+let g:signify_cursorhold_normal     = 1
+" 缓冲区被修改时更新符号
+let g:signify_update_on_bufenter    = 0
+" vim获取焦点时更新符号
+let g:signify_update_on_focusgained = 1
+" 键盘映射
+nnoremap <leader>gt :SignifyToggle<CR>
+nnoremap <leader>gh :SignifyToggleHighlight<CR>
+nnoremap <leader>gr :SignifyRefresh<CR>
+nnoremap <leader>gd :SignifyDebug<CR>
+" hunk jumping
+nmap <leader>gj <plug>(signify-next-hunk)
+nmap <leader>gk <plug>(signify-prev-hunk)
+" hunk text object
+omap ic <plug>(signify-motion-inner-pending)
+xmap ic <plug>(signify-motion-inner-visual)
+omap ac <plug>(signify-motion-outer-pending)
+xmap ac <plug>(signify-motion-outer-visual)
+
+" mappings to jump to changed blocks
+nmap <leader>sn <plug>(signify-next-hunk)
+nmap <leader>sp <plug>(signify-prev-hunk)
+" nicer colors
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+
+map <F9> ::SignifyDiff<CR>
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -127,7 +186,7 @@ filetype plugin indent on    " required
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :Plug foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
@@ -173,10 +232,11 @@ set viminfo='100,f1             " Save up to 100 marks, enable capital marks
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set expandtab
+set incsearch
 
 " Folds
 set foldmethod=indent           " fold based on indent
@@ -185,6 +245,14 @@ set nofoldenable                " dont fold by default
 
 " Leader setting
 let mapleader = "," " rebind <Leader> key
+
+" ==== 系统剪切板复制粘贴 ====
+" v 模式下复制内容到系统剪切板
+vmap <Leader>c "+yy
+" n 模式下复制一行到系统剪切板
+nmap <Leader>c "+yy
+" n 模式下粘贴系统剪切板的内容
+nmap <Leader>v "+p
 
 " Custom mappings
 vnoremap < <gv  " better indentation
@@ -258,6 +326,7 @@ set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set showmatch
 
 "------------------------------------------------------------
 let NERDTreeWinPos=0
@@ -292,6 +361,7 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 " Grep
 map <F6> :Grepper<CR>
+let g:grepper = {"highlight":  1, "side_cmd": 1}
 
 
 "------------------------------------------------------------
@@ -340,7 +410,7 @@ nnoremap <C-s-tab> :bp<CR>
 " 关闭状态显示空白符号计数
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
-let g:airline_theme='powerlineish'
+let g:airline_theme='dark'
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
@@ -356,7 +426,7 @@ let g:airline_symbols.readonly = '⭤'
 "end: setup vim-aireline
 
 " begin: setup indentLine
-let g:indentLine_setColors = 0
+let g:indentLine_setColors = 1
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_char='┆'
@@ -365,4 +435,30 @@ let g:indentLine_char='┆'
 let g:autopep8_disable_show_diff=1
 let g:autopep8_max_line_length=79
 
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {<CR>}<ESC>O
 
+" begin: vim-go
+let g:go_fmt_command = "goimports" 
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+
+let g:go_version_warning = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_generate_tags = 1
+let g:godef_split=2
+let g:go_version_warning = 0
+" end: vim-go
+
+set ts=4
+set expandtab
+set autoindent
