@@ -1,12 +1,15 @@
 https://www.jianshu.com/p/110b27f8361b
 
-# 安装
+# 使用
 ```
-pip install pygments
-sudo apt-get install vim
-sudo apt-get install ctags
-go clean -cache && go get golang.org/x/tools/gopls@latest
+docker build --no-cache -t myvim --build-arg GOVERSION=1.14.4 .
+
+docker run -itd -v xxx:/home/xxx --name vim myvim:latest
+
 ```
+
+> GOVERSION如果没有提供，默认会安装go1.14.4
+> PYTHONVERSION如果没有提供，默认安装python36
 
 
 # 快捷键
@@ -21,6 +24,7 @@ go clean -cache && go get golang.org/x/tools/gopls@latest
 |F7|Flake8 check					|
 |F8|打开ALE							  |
 |F9|signify								   |
+
 ## 1. Grepper
 :Grepper 打开搜索
  :vnew filename 打开搜索到的文件
