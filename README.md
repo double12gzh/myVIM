@@ -5,6 +5,7 @@ https://www.jianshu.com/p/110b27f8361b
 pip install pygments
 sudo apt-get install vim
 sudo apt-get install ctags
+go clean -cache && go get golang.org/x/tools/gopls@latest
 ```
 
 
