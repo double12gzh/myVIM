@@ -43,5 +43,6 @@ RUN yum clean all && yum makecache  && \
     export PATH=$PATH:$GOROOT/bin:$GOPATH/bin && \
     git clone https://github.com/Valloric/YouCompleteMe.git /root/.vim/bundle/YouCompleteMe && \
     cd /root/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && python3 install.py --clang-completer --go-completer && \
-    vim +PluginInstall +qall > /dev/null && vim +':GoInstallBinaries' +qall > /dev/null && \
+    vim +PluginInstall +qall > /dev/null && vim +GoInstallBinaries +qall > /dev/null && \
+    go get -u -v github.com/jstemmer/gotags && \
     cd /root && yum remove -y wget git && rm -rf /root/go${GOVERSION}.linux-amd64.tar.gz && rm -rf /root/vim
