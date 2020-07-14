@@ -492,3 +492,5 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:NERDTreeShowIgnoredStatus = 1
 
 " end: nerdtree
+
+

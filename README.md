@@ -1,14 +1,23 @@
-https://www.jianshu.com/p/110b27f8361b
+
+# 说明
+此镜像中默认安装了python36和golang 1.14.4
+
 
 # 使用
 ```
+1. 生成镜像
 docker build --no-cache -t myvim --build-arg GOVERSION=1.14.4 .
 
+2. 启动容器
 docker run -itd -v xxx:/home/xxx --name vim myvim:latest
+
+3. 进入到容器中
+docker exec -it vim zsh
 
 ```
 
 > GOVERSION如果没有提供，默认会安装go1.14.4
+> 
 > PYTHONVERSION如果没有提供，默认安装python36
 
 
@@ -98,5 +107,6 @@ ctrl+x+o
 
 ## 其它：
 vim docker 镜像：https://cloud.docker.com/u/double12gzh/repository/docker/double12gzh/centos_with_vim
+https://www.jianshu.com/p/110b27f8361b
 
 

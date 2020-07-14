@@ -6,10 +6,12 @@ COPY vimrc /root/.vimrc
 ARG GOVERSION=1.14.4
 ARG PYTHONVERSION=python36
 
+ENV LANG C.UTF-8
 ENV GOPATH=/root/.go
 ENV GOROOT=/usr/local/go
 ENV GOPROXY=http://goproxy.cn
 ENV GO111MODULE=on
+
 ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 RUN yum clean all && yum makecache  && \
@@ -27,7 +29,7 @@ RUN yum clean all && yum makecache  && \
     git clone https://github.com/vim/vim.git /root/vim  && \
     cd /root/vim && ./configure --with-features=huge --enable-multibyte --enable-pythoninterp --enable-python3interp && make && make install && \
     yum install -y wget && \
-    wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /root/install.sh && chmod a+x && sh /root/install.sh && rm -rf /root/install.sh && \
+    wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true && \
     mkdir -p /root/.vim/bundle && git clone https://github.com/VundleVim/Vundle.vim /root/.vim/bundle/Vundle.vim && \
     wget https://studygolang.com/dl/golang/go${GOVERSION}.linux-amd64.tar.gz -O /root/go${GOVERSION}.linux-amd64.tar.gz && \
     tar -xzvf /root/go${GOVERSION}.linux-amd64.tar.gz -C /usr/local && \
@@ -46,3 +48,4 @@ RUN yum clean all && yum makecache  && \
     vim +PluginInstall +qall > /dev/null && vim +GoInstallBinaries +qall > /dev/null && \
     go get -u -v github.com/jstemmer/gotags && \
     cd /root && yum remove -y wget git && rm -rf /root/go${GOVERSION}.linux-amd64.tar.gz && rm -rf /root/vim
+
