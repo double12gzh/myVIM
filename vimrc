@@ -10,9 +10,9 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required!
 Plugin 'gmarik/Vundle.vim'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'airblade/vim-gitgutter'
+" Plugin 'airblade/vim-gitgutter'
 Plugin 'dgryski/vim-godef'
 Plugin 'ervandew/supertab'                                          " Perform all your vim insert mode completions with Tab(https://github.com/ervandew/supertab)
 Plugin 'flazz/vim-colorschemes'                                     " Color Schema(https://github.com/flazz/vim-colorschemes)
@@ -82,10 +82,10 @@ if version >= 800
     let g:gutentags_auto_add_gtags_cscope = 0
     let g:gutentags_plus_nomap = 1
 
-    "预览 quickfix 窗口 ctrl-w z 关闭
+    " 预览 quickfix 窗口 ctrl-w z 关闭
     Plugin 'skywind3000/vim-preview'
     
-    "P 预览 大p关闭
+    " P 预览 大p关闭
     autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
     autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
     noremap <Leader>u :PreviewScroll -1<cr>                         " 往上滚动预览窗口
@@ -473,24 +473,3 @@ let g:godef_split=2
 let g:go_version_warning = 0
 
 " end: vim-go
-
-" begin: nerdtree
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
-let g:NERDTreeShowIgnoredStatus = 1
-
-" end: nerdtree
-
-
