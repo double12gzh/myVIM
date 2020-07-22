@@ -106,7 +106,8 @@ ctrl+x+o
 :w!
 
 ## 其它：
-vim docker 镜像：https://cloud.docker.com/u/double12gzh/repository/docker/double12gzh/centos_with_vim
+[vim docker 镜像](https://hub.docker.com/r/double12gzh/centos_with_vim)
+
 https://www.jianshu.com/p/110b27f8361b
 
 
