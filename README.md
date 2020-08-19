@@ -101,6 +101,7 @@ diff file1 file2 | vim -
 
 ## 15. 代码补全
 ctrl+x+o
+> 如果希望可以自动出现代码提示，可以把`au filetype go inoremap <buffer> . .<C-x><C-o>`加入到~/.vimrc的最后一行
 
 ## 16. 自动导入
 :w!
