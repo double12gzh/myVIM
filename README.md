@@ -104,6 +104,8 @@ ctrl+x+o
 
 ## 16. 自动导入
 :w!
+## 17. 查看godoc
+shift + k
 
 ## 其它：
 [vim docker 镜像](https://hub.docker.com/r/double12gzh/centos_with_vim)
