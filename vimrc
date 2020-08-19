@@ -473,3 +473,9 @@ let g:godef_split=2
 let g:go_version_warning = 0
 
 " end: vim-go
+
+let &t_TI = ""
+let &t_TE = ""
+
+" 如果希望自动出现代码提示而不是需要按ctrl+x+o才出现，可以把这行的注释去掉
+" au filetype go inoremap <buffer> . .<C-x><C-o>
