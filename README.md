@@ -105,8 +105,12 @@ ctrl+x+o
 
 ## 16. 自动导入
 :w!
+
 ## 17. 查看godoc
 shift + k
+
+## 18. 在NerdTree中，创建/删除文件/文件夹
+ma
 
 ## 其它：
 [vim docker 镜像](https://hub.docker.com/r/double12gzh/centos_with_vim)
