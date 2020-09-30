@@ -64,6 +64,7 @@ docker exec -it vim zsh
 		- F8 打开ALE，进行动态代码检查
 ## 8. tag相关(未完)
     - ctrl + W + } 预览定义
+    - Ctrl + W + ] 在新窗口中打开
     - ctrl + ]跳转查看定义
     - PreviewTag tagname 预览tag
     - PreviewFile filename预览文件
