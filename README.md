@@ -2,6 +2,9 @@
 # 说明
 此镜像中默认安装了python36和golang 1.14.4
 
+* 可以选择安装 `highlight`，可以让我们执行`cat`等命令时带有颜色方案
+* 可以选择安装 `direnv`，自动生成隔离的环境
+> 以上两点的设置可以参考[这里](https://double12gzh.github.io/wiki/#linux%20cat%E9%AB%98%E4%BA%AE)
 
 # 使用
 ```
