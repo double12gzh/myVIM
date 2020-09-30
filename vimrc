@@ -1,5 +1,12 @@
 set encoding=utf-8
 set nocompatible                                                    " explicitly get out of vi-compatible mode
+
+"在.vimrc中配置 cscopetag则在Ctrl + ]出现时出现选择 tag，
+"若有同名函数，则手动进行选择；
+"若想跳转到第一条匹配的只需要set nocscopetag即可。
+set cscopetag
+
+
 filetype off                                                        " required!
 
 " This loads all the plugins in ~/.vim/bundle
