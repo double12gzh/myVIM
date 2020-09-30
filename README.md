@@ -26,7 +26,7 @@ docker exec -it vim zsh
 |---|----------------			 |
 |F1|帮助                                  |
 |F2|打开NerdTree         			|
-|F3|打开TagList					   |
+|F3|打开TagList(shift+i:显示隐藏的文件/文件夹)					   |
 |F4|打开ctrlp搜索文件				|
 |F5|PreviewTag						|
 |F6|打开Grepper搜索关键字   |
