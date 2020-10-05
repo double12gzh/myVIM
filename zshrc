@@ -32,3 +32,5 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias ccat='highlight -O ansi --force'
+
+PROMPT="%B%F{2}[%f%b%B%F{green}%n%f%b%B%F{green}@%f%b%B%F{green}%m%f%b%B%F{green} %f%b%B%F{green}%~%f%b%B%F{green}]%f%b"
