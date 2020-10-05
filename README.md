@@ -1,28 +1,53 @@
 
 # 说明
-此镜像中默认安装了python36和golang 1.14.4
+此镜像中默认安装了python36和golang 1.15.2
 
-* 可以选择安装 `highlight`，可以让我们执行`cat`等命令时带有颜色方案
-* 可以选择安装 `direnv`，自动生成隔离的环境
-> 以上两点的设置可以参考[这里](https://double12gzh.github.io/wiki/#linux%20cat%E9%AB%98%E4%BA%AE)
+* (可选)已安装 `highlight`，可以让我们执行`ccat`等命令时带有颜色方案
+* (可选)已安装 `direnv`，自动生成隔离的环境
+
+> * 以上两点的设置可以参考[这里](https://double12gzh.github.io/wiki/#linux%20cat%E9%AB%98%E4%BA%AE)
+> 
+> * direnv的使用方法：
+> 
+> 	* 进入到项目目录
+>	* `rm -rf .envrc && echo "layout go" > .envrc`（这是对于GoLang项目，如果是Python项目，请使用`echo "layout python"`）
+> 	* 根据提示输入：`direnv allow .`
+>	* 执行`go get -u -v ./...`下载代码中的所有依赖到`{项目根目录}/.direnv`
 
 # 使用
-```
+## 容器化方式(推荐)
+
+```bash
 1. 生成镜像
-docker build --no-cache -t myvim --build-arg GOVERSION=1.14.4 .
+docker build --no-cache -t myvim --build-arg GOVERSION=1.15.2 .
+
+# 或者可以执行以下命令生成镜像
+# make build-image
 
 2. 启动容器
 docker run -itd -v xxx:/home/xxx --name vim myvim:latest
 
 3. 进入到容器中
 docker exec -it vim zsh
-
 ```
 
-> GOVERSION如果没有提供，默认会安装go1.14.4
+> GOVERSION如果没有提供，默认会安装go1.15.2
 > 
 > PYTHONVERSION如果没有提供，默认安装python36
 
+## 非容器化
+
+建议使用root用户执行以下命令：
+
+```bash
+sh setup_for_centos8.sh
+```
+
+或者可以执行以下命令:
+
+```bash
+make local-setup
+```
 
 # 快捷键
 |键|功能|
