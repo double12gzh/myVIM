@@ -87,7 +87,7 @@ make local-setup
 			- tab页切换： 向左: ,,  向右：,.
 > 按下 `Esc` 或 `<Ctrl-c>` 可退出ctrlp，返回到Vim窗口中
 >
-> 按下` F5` 用于刷新当前操作路径下的文件缓存，可以使用命令 `let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp' `设置缓存文件存放路径
+> 按下` F4` 用于刷新当前操作路径下的文件缓存，可以使用命令 `let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp' `设置缓存文件存放路径
 >
 > 使用 `<Ctrl-k>` 和` <Ctrl-j> `在模糊搜索结果列表中上下移动 (当然也可以使用键盘上的上下方向键)
 >
@@ -113,7 +113,7 @@ make local-setup
 ## 8. tag相关(未完)
     - ctrl + W + } 预览定义
     - Ctrl + W + ] 在新窗口中打开
-    - ctrl + ]跳转查看定义
+    - ctrl + ]跳转查看定义（对于Python来说，[可能会遇到这个问题](https://double12gzh.github.io/wiki/#ctags%E8%BF%9B%E8%A1%8C%E8%B7%B3%E8%BD%AC%E6%97%B6%E4%BC%9A%E6%8A%8Aimport%E4%B9%9F%E5%8A%A0%E5%88%B0%E9%87%8C%E9%9D%A2)）
     - PreviewTag tagname 预览tag
     - PreviewFile filename预览文件
     - F3 打开taglist
