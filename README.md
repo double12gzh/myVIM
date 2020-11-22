@@ -71,6 +71,9 @@ make local-setup
 		- F2 打开nerdtree
 		- i: 水平打开文件
 		- s: 竖直打开文件
+		- ma：添加文件
+		- :!mkdir {文件夹的名字} 添加文件夹
+		- md：删除文件/文件夹
 ## 3. Grepper
 		- F6 打开Grepper，进行关键字搜索
 		- p在新窗口中预览 
