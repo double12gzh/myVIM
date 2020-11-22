@@ -74,6 +74,7 @@ make local-setup
 		- ma：添加文件
 		- :!mkdir {文件夹的名字} 添加文件夹
 		- md：删除文件/文件夹
+		- r: 刷新
 ## 3. Grepper
 		- F6 打开Grepper，进行关键字搜索
 		- p在新窗口中预览 
