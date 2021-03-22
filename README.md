@@ -137,6 +137,8 @@ make local-setup
 ## 10. vim-signify(未完)
 	与git相关，通过与vim-fugitive联合使用。
 		- F9 gitdiff
+https://stackoverflow.com/questions/27832630/merge-changes-using-vimdiff
+
 ## 11. subline
 ![image.png](https://cdn-pri.nlark.com/lark/0/2018/png/124229/1538205492046-801aeedd-0da7-4eb1-b4b7-3488f4185ce2.png)
 
