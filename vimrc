@@ -15,6 +15,9 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 
 call vundle#begin()
 
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
 " let Vundle manage Vundle, required!
 Plugin 'gmarik/Vundle.vim'
 "Plugin 'jistr/vim-nerdtree-tabs'
