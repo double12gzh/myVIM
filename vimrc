@@ -45,7 +45,6 @@ Plugin 'iamcco/markdown-preview.vim'
 
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/indentLine'
-Plugin 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
 " vim-scripts repos
 Plugin 'L9'
@@ -379,10 +378,9 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-" Grep
-map <F6> :Grepper<CR>
-let g:grepper = {"highlight":  1, "side_cmd": 1}
-
+" Ag
+map <F6> :Ag<CR>
+map <F7> :FZF<CR>
 
 "------------------------------------------------------------
 " Python
