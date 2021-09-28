@@ -16,7 +16,7 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 
 " let Vundle manage Vundle, required!
 Plugin 'gmarik/Vundle.vim'
