@@ -4,6 +4,8 @@
 
 * (可选)已安装 `highlight`，可以让我们执行`ccat`等命令时带有颜色方案
 * (可选)已安装 `direnv`，自动生成隔离的环境
+* 安装 https://github.com/BurntSushi/ripgrep
+* 安装 FZF, bat
 
 > * 以上两点的设置可以参考[这里](https://double12gzh.github.io/wiki/#linux%20cat%E9%AB%98%E4%BA%AE)
 > 
@@ -57,8 +59,8 @@ make local-setup
 |F3|打开TagList(shift+i:显示隐藏的文件/文件夹)					   |
 |F4|打开ctrlp搜索文件				|
 |F5|PreviewTag						|
-|F6|打开Grepper搜索关键字   |
-|F7|Flake8 check					|
+|F6|打开Ag搜索关键字   |
+|F7|打开 FZF check					|
 |F8|打开ALE							  |
 |F9|signify								   |
 
