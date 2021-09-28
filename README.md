@@ -174,6 +174,6 @@ ma
 
 https://www.jianshu.com/p/110b27f8361b
 
-如果使用 [fpp](https://github.com/facebook/PathPicker)，需要修改默认的 $SHELL 为 zsh 并重新打开终端，否则无法打开文件
+如果使用 [fpp](https://github.com/facebook/PathPicker)，需要修改默认的 `$SHELL` 为 `zsh` 并重新打开终端，否则无法打开文件
 
 
