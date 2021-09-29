@@ -1,5 +1,7 @@
 set encoding=utf-8
 set nocompatible                                                    " explicitly get out of vi-compatible mode
+set termencoding=utf-8
+set fileencodings=utf-8,gbk,latin1
 
 "在.vimrc中配置 cscopetag则在Ctrl + ]出现时出现选择 tag，
 "若有同名函数，则手动进行选择；
@@ -14,7 +16,6 @@ filetype off                                                        " required!
 set rtp+=~/.vim/bundle/Vundle.vim/
 
 call vundle#begin()
-
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 
@@ -93,7 +94,7 @@ if version >= 800
 
     " 预览 quickfix 窗口 ctrl-w z 关闭
     Plugin 'skywind3000/vim-preview'
-    
+
     " P 预览 大p关闭
     autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
     autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
@@ -378,9 +379,10 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-" Ag
+" ag
 map <F6> :Ag<CR>
 map <F7> :FZF<CR>
+
 
 "------------------------------------------------------------
 " Python
@@ -433,7 +435,7 @@ let g:airline#extensions#whitespace#symbol = '!'
 let g:airline_theme='dark'
 
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+        let g:airline_symbols = {}
 endif
 
 let g:airline_left_sep = '⮀'
@@ -464,7 +466,7 @@ inoremap { {<CR>}<ESC>O
 
 " begin: vim-go
 
-let g:go_fmt_command = "goimports" 
+let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
 
@@ -486,4 +488,21 @@ let &t_TI = ""
 let &t_TE = ""
 
 " 如果希望自动出现代码提示而不是需要按ctrl+x+o才出现，可以把这行的注释去掉
-" au filetype go inoremap <buffer> . .<C-x><C-o>
+au filetype go inoremap <buffer> . .<C-x><C-o>
+imap <c-z> <c-x><c-o>
+" 只弹出代码提示，不补全
+set completeopt=longest,menuone
+
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" open omni completion menu closing previous if open and opening new menu without changing the text
+inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
+            \ '<C-x><C-o><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
+" open user completion menu closing previous if open and opening new menu without changing the text
+inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
+            \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
