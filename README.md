@@ -77,9 +77,11 @@ make local-setup
 		- :!mkdir {文件夹的名字} 添加文件夹
 		- md：删除文件/文件夹
 		- r: 刷新
-## 3. Grepper
-		- F6 打开Grepper，进行关键字搜索
-		- p在新窗口中预览 
+## 3. AG
+		- F6 打开AG，进行关键字搜索
+		- ctrl + T在新窗口中预览 
+		- ctrl + X水平预览 
+		- ctrl + V垂直预览 
 
 ## 4. ctrlp
 		- F4 打开ctrlp，进行文件搜索
