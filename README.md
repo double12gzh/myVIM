@@ -168,6 +168,11 @@ shift + k
 
 ## 18. 在NerdTree中，创建/删除文件/文件夹
 ma
+	
+## 19. FZF
+ctrl + T: 在新的tab 中打开预览
+ctrl + X: 在当前 tab 中水平打开预览
+ctrl + V: 在当前 tab 中垂直打开预览
 
 ## 其它：
 [vim docker 镜像](https://hub.docker.com/r/double12gzh/centos_with_vim)
