@@ -145,9 +145,8 @@ let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 
 " 导致 tmux 排版错乱
-"let g:ale_sign_error = '✗'
 "let g:ale_sign_warning = '⚡'
-let g:ale_sign_error = 'e'
+let g:ale_sign_error = '✗'
 let g:ale_sign_warning = 'w'
 map <F8> ::ALEToggle<CR>
 
