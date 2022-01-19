@@ -46,6 +46,7 @@ Plugin 'iamcco/markdown-preview.vim'
 
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/indentLine'
+"Plugin 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
 " vim-scripts repos
 Plugin 'L9'
@@ -144,10 +145,10 @@ let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 
-" 导致 tmux 排版错乱
-"let g:ale_sign_warning = '⚡'
-let g:ale_sign_error = '✗'
+"let g:ale_sign_error = 'e'
 let g:ale_sign_warning = 'w'
+let g:ale_sign_error = '✗'
+"let g:ale_sign_warning = '⚡'
 map <F8> ::ALEToggle<CR>
 
 " vim-signify
@@ -468,6 +469,9 @@ inoremap { {<CR>}<ESC>O
 
 " begin: vim-go
 
+" https://github.com/fatih/vim-go/wiki/Tutorial
+set autowrite
+let g:AutoClosePreserveDotReg = 0
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
@@ -483,18 +487,27 @@ let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 let g:godef_split=2
 let g:go_version_warning = 0
+let g:go_fmt_autosave = 1
+
+let g:go_highlight_types = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
 
 " end: vim-go
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" ag 的时候不搜索文件名字中的关键字
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 let &t_TI = ""
 let &t_TE = ""
 
 " 如果希望自动出现代码提示而不是需要按ctrl+x+o才出现，可以把这行的注释去掉
 au filetype go inoremap <buffer> . .<C-x><C-o>
-imap <c-z> <c-x><c-o>
+
 " 只弹出代码提示，不补全
 set completeopt=longest,menuone
-
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
