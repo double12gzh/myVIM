@@ -8,7 +8,6 @@ set fileencodings=utf-8,gbk,latin1
 "若想跳转到第一条匹配的只需要set nocscopetag即可。
 set cscopetag
 
-
 filetype off                                                        " required!
 
 " This loads all the plugins in ~/.vim/bundle
@@ -16,6 +15,7 @@ filetype off                                                        " required!
 set rtp+=~/.vim/bundle/Vundle.vim/
 
 call vundle#begin()
+Plugin 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 
@@ -52,6 +52,8 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'L9'
 Plugin 'python.vim'
 Plugin 'will133/vim-dirdiff'
+
+Plugin 'dyng/ctrlsf.vim'
 
 " 自动载入ctags gtags
 if version >= 800
@@ -149,7 +151,6 @@ let g:ale_cpp_cppcheck_options = ''
 let g:ale_sign_warning = 'w'
 let g:ale_sign_error = '✗'
 "let g:ale_sign_warning = '⚡'
-map <F8> ::ALEToggle<CR>
 
 " vim-signify
 Plugin 'mhinz/vim-signify'
@@ -198,12 +199,9 @@ highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
-map <F9> ::SignifyDiff<CR>
-
 call vundle#end()                                                   " required
 
 filetype plugin indent on                                           " required
-
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -226,8 +224,9 @@ set showmode                                                        " Show curre
 set gcr=a:blinkon0                                                  " Disable cursor blink
 set novisualbell                                                    " No sounds
 set noerrorbells                                                    " No noise
+set t_vb=
+set tm=500
 set autoread                                                        " Reload files changed outside vim
-set history=256                                                     " Number of things to remember in history
 set showmatch                                                       " Show matching brackets
 set laststatus=2                                                    " Always show status line
 set t_Co=256                                                        " As I use dark background in mac, I also can use this colorscheme on mac
@@ -237,6 +236,11 @@ set list listchars=tab:\ \ ,trail:·                                 " Display t
 set linebreak                                                       " Wrap lines at convenient points
 set ts=4
 set ignorecase
+" Turn backup off, since most stuff is in SVN, git etc. anyway...
+set nobackup
+set nowb
+set noswapfile
+set belloff=all
 
 syntax on                                                           " Turn on syntax highlight
 
@@ -302,14 +306,12 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
 map <Leader>x :%s/\s\+$//
 
-
 "------------------------------------------------------------
 " Schema settings, for iterm2 settings
 "
 " References:
 "   http://stackoverflow.com/questions/7278267/incorrect-colors-with-vim-in-iterm2-using-solarized
 "   https://github.com/altercation/solarized
-
 
 try
   colorscheme desert256
@@ -355,13 +357,11 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip                            " MacOSX/Lin
 let NERDTreeWinPos=0
 "let NERDTreeWinPos='left'
 let NERDTreeWinSize=35
-map <F2> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 
 " tag bar
 let g:tagbar_ctags_bin = 'ctags'
 let g:tagbar_width = 35
-map <F3> :Tagbar<CR>
 
 " gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
@@ -383,9 +383,24 @@ let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 " ag
+" ag 的时候不搜索文件名字中的关键字
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+
+" begin: https://github.com/dyng/ctrlsf.vim#installation
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_auto_preview = 1
+" end: ctrlsf
+
+map <F2> :NERDTreeToggle<CR>
+map <F3> :Tagbar<CR>
+map <F4> :CtrlPMixed<CR>
 map <F6> :Ag<CR>
 map <F7> :FZF<CR>
-
+map <F8> :CtrlSF<CR>
+map <F9> ::ALEToggle<CR>
+map <F10> ::SignifyDiff<CR>
+map <F12> :Flake8<CR>
 
 "------------------------------------------------------------
 " Python
@@ -396,6 +411,11 @@ let g:pyflakes_use_quickfix = 0
 
 " ignore part of errors
 let g:flake8_ignore="E501"
+let no_flake8_maps = 1
+
+" 高亮 python
+autocmd BufRead,BufNewFile *.py let python_highlight_all=1
+let g:python_highlight_all=1
 
 "------------------------------------------------------------
 " Settings for ctrlp
@@ -415,7 +435,6 @@ let g:ctrlp_user_command = [
     \ 'find %s -type f'
     \ ]
 
-map <F4> :CtrlPMixed<CR>
 "------------------------------------------------------------
 " Show Colume Vertical Line in column 74
 "highlight ColorColumn ctermbg=gray
@@ -488,6 +507,7 @@ let g:go_highlight_generate_tags = 1
 let g:godef_split=2
 let g:go_version_warning = 0
 let g:go_fmt_autosave = 1
+let g:go_textobj_include_function_doc = 1
 
 let g:go_highlight_types = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
@@ -496,9 +516,6 @@ let g:go_metalinter_autosave = 1
 " end: vim-go
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" ag 的时候不搜索文件名字中的关键字
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 let &t_TI = ""
 let &t_TE = ""
@@ -521,3 +538,18 @@ inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Es
 " open user completion menu closing previous if open and opening new menu without changing the text
 inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
             \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
+
+" python-mode
+let g:pymode_options_max_line_length=120
+let g:pymode=1
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_unmodified = 0
+let g:pymode_lint_message = 1
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_options_colorcolumn = 1
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'mccabe']
+let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime']
+let g:jedi#use_splits_not_buffers = "left"
