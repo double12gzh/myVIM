@@ -15,9 +15,13 @@ filetype off                                                        " required!
 set rtp+=~/.vim/bundle/Vundle.vim/
 
 call vundle#begin()
+Plugin 'mbbill/undotree'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
+"添加到 bashrc 中用于配置fzf 的preview 的窗口
+" export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 
 " let Vundle manage Vundle, required!
 Plugin 'gmarik/Vundle.vim'
@@ -400,6 +404,7 @@ map <F7> :FZF<CR>
 map <F8> :CtrlSF<CR>
 map <F9> ::ALEToggle<CR>
 map <F10> ::SignifyDiff<CR>
+map <F11> :UndotreeToggle<CR>
 map <F12> :Flake8<CR>
 
 "------------------------------------------------------------
@@ -552,4 +557,25 @@ let g:pymode_options_colorcolumn = 1
 let g:pymode_lint_on_fly = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'mccabe']
 let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime']
+
 let g:jedi#use_splits_not_buffers = "left"
+
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+
+if has("persistent_undo")
+   let target_path = expand('~/.undodir')
+
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
