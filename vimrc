@@ -390,6 +390,9 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " ag 的时候不搜索文件名字中的关键字
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
+" CtrlSF alia: C. 即：输入 :C 与输入 :CtrlSF 效果是一样的
+command! -nargs=1 C CtrlSF <args>
+
 " begin: https://github.com/dyng/ctrlsf.vim#installation
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_search_mode = 'async'
