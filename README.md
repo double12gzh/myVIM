@@ -176,6 +176,15 @@ ctrl + T: 在新的tab 中打开预览
 ctrl + X: 在当前 tab 中水平打开预览
 ctrl + V: 在当前 tab 中垂直打开预览
 
+
+## 20. CtrlSF
+:C 或 :CtrlSF 打开
+, + t 在新的标签中打开或 直接按 t 也可以在标签中打开
+, + o 在当前页中打开
+ctrl +p 预览
+ctrl + t 使用 FZF搜索
+	
+	
 ## 其它：
 [vim docker 镜像](https://hub.docker.com/r/double12gzh/centos_with_vim)
 
