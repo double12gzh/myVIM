@@ -520,6 +520,10 @@ let g:go_textobj_include_function_doc = 1
 let g:go_highlight_types = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
+let g:go_code_completion_icase = 0
+let g:go_auto_type_info = 1
+let g:go_auto_sameids = 1
+let g:go_doc_popup_window = 1
 
 " end: vim-go
 
