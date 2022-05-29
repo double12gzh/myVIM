@@ -11,6 +11,7 @@ set cscopetag
 filetype off                                                        " required!
 
 call plug#begin()
+
 Plug 'mbbill/undotree'
 Plug 'octol/vim-cpp-enhanced-highlight'
 "Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
@@ -19,15 +20,12 @@ Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 "添加到 bashrc 中用于配置fzf 的preview 的窗口
 " export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 
-" let Vundle manage Vundle, required!
 "Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'airblade/vim-gitgutter'
 Plug 'dgryski/vim-godef'
 Plug 'ervandew/supertab'                                          " Perform all your vim insert mode completions with Tab(https://github.com/ervandew/supertab)
 Plug 'flazz/vim-colorschemes'                                     " Color Schema(https://github.com/flazz/vim-colorschemes)
 Plug 'https://github.com/nvie/vim-flake8.git'
-"Plug 'nvie/vim-flake8.git'                                        " Flake8 Plug for Vim(https://github.com/nvie/vim-flake8)
 Plug 'rodjek/vim-puppet'                                          " Puppet niceties for your Vim setup(https://github.com/rodjek/vim-puppet)
 Plug 'kien/ctrlp.vim'                                             " Fuzzy file, buffer, mru, tag, etc finder(https://github.com/kien/ctrlp.vim)
 Plug 'davidhalter/jedi-vim'                                       " Using the jedi autocompletion library for VIM
