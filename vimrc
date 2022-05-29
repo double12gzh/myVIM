@@ -10,59 +10,53 @@ set cscopetag
 
 filetype off                                                        " required!
 
-" This loads all the plugins in ~/.vim/bundle
-" Use vundle plugin to manage all other plugins
-set rtp+=~/.vim/bundle/Vundle.vim/
-
-call vundle#begin()
-Plugin 'mbbill/undotree'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
+call plug#begin()
+Plug 'mbbill/undotree'
+Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 "添加到 bashrc 中用于配置fzf 的preview 的窗口
 " export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 
 " let Vundle manage Vundle, required!
-Plugin 'gmarik/Vundle.vim'
-"Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'jiangmiao/auto-pairs'
-" Plugin 'airblade/vim-gitgutter'
-Plugin 'dgryski/vim-godef'
-Plugin 'ervandew/supertab'                                          " Perform all your vim insert mode completions with Tab(https://github.com/ervandew/supertab)
-Plugin 'flazz/vim-colorschemes'                                     " Color Schema(https://github.com/flazz/vim-colorschemes)
-Plugin 'nvie/vim-flake8.git'                                        " Flake8 plugin for Vim(https://github.com/nvie/vim-flake8)
-Plugin 'rodjek/vim-puppet'                                          " Puppet niceties for your Vim setup(https://github.com/rodjek/vim-puppet)
-Plugin 'kien/ctrlp.vim'                                             " Fuzzy file, buffer, mru, tag, etc finder(https://github.com/kien/ctrlp.vim)
-Plugin 'davidhalter/jedi-vim'                                       " Using the jedi autocompletion library for VIM
-Plugin 'fatih/vim-go'
-Plugin 'majutsushi/tagbar'
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
+"Plug 'jistr/vim-nerdtree-tabs'
+Plug 'jiangmiao/auto-pairs'
+" Plug 'airblade/vim-gitgutter'
+Plug 'dgryski/vim-godef'
+Plug 'ervandew/supertab'                                          " Perform all your vim insert mode completions with Tab(https://github.com/ervandew/supertab)
+Plug 'flazz/vim-colorschemes'                                     " Color Schema(https://github.com/flazz/vim-colorschemes)
+Plug 'https://github.com/nvie/vim-flake8.git'
+"Plug 'nvie/vim-flake8.git'                                        " Flake8 Plug for Vim(https://github.com/nvie/vim-flake8)
+Plug 'rodjek/vim-puppet'                                          " Puppet niceties for your Vim setup(https://github.com/rodjek/vim-puppet)
+Plug 'kien/ctrlp.vim'                                             " Fuzzy file, buffer, mru, tag, etc finder(https://github.com/kien/ctrlp.vim)
+Plug 'davidhalter/jedi-vim'                                       " Using the jedi autocompletion library for VIM
+Plug 'fatih/vim-go'
+Plug 'majutsushi/tagbar'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/nerdtree'
 
 "begin: markdown
-Plugin 'suan/vim-instant-Markdown'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'iamcco/mathjax-support-for-mkdp'
-Plugin 'iamcco/markdown-preview.vim'
+Plug 'suan/vim-instant-Markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
 "end: markdown
 
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Yggdroot/indentLine'
-"Plugin 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Yggdroot/indentLine'
+"Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
 " vim-scripts repos
-Plugin 'L9'
-Plugin 'python.vim'
-Plugin 'will133/vim-dirdiff'
+Plug 'will133/vim-dirdiff'
 
-Plugin 'dyng/ctrlsf.vim'
+Plug 'dyng/ctrlsf.vim'
 
 " 自动载入ctags gtags
 if version >= 800
-    Plugin 'ludovicchabant/vim-gutentags'
-    Plugin 'skywind3000/gutentags_plus'
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'skywind3000/gutentags_plus'
 
     let $GTAGSLABEL = 'native-pygments'
     let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
@@ -100,7 +94,7 @@ if version >= 800
     let g:gutentags_plus_nomap = 1
 
     " 预览 quickfix 窗口 ctrl-w z 关闭
-    Plugin 'skywind3000/vim-preview'
+    Plug 'skywind3000/vim-preview'
 
     " P 预览 大p关闭
     autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
@@ -122,7 +116,7 @@ if version >= 800
     noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 endif
 
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 " 对应语言需要安装相应的检查工具
 " https://github.com/w0rp/ale
 "    let g:ale_linters_explicit = 1                                 " 除g:ale_linters指定，其他不可用
@@ -157,8 +151,8 @@ let g:ale_sign_error = '✗'
 "let g:ale_sign_warning = '⚡'
 
 " vim-signify
-Plugin 'mhinz/vim-signify'
-Plugin 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
 
 " 设置要检查的VCS
 let g:signify_vcs_list = ['git', 'hg']
@@ -203,18 +197,16 @@ highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
-call vundle#end()                                                   " required
-
-filetype plugin indent on                                           " required
+call plug#end()                                                   " required
 
 " Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PlugList       - lists configured Plugs
+" :PlugInstall    - installs Plugs; append `!` to update or just :PlugUpdate
 " :Plug foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" :PlugClean      - confirms removal of unused Plugs; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Put your non-Plug stuff after this line
 
 "------------------------------------------------------------
 " General Config
@@ -552,19 +544,19 @@ inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Es
             \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
 
 " python-mode
-let g:pymode_options_max_line_length=120
-let g:pymode=1
-let g:pymode_lint = 1
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_unmodified = 0
-let g:pymode_lint_message = 1
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_options_colorcolumn = 1
-let g:pymode_lint_on_fly = 1
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'mccabe']
-let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime']
-
+"let g:pymode_options_max_line_length=120
+"let g:pymode=1
+"let g:pymode_lint = 1
+"let g:pymode_lint_on_write = 1
+"let g:pymode_lint_unmodified = 0
+"let g:pymode_lint_message = 1
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_all = 1
+"let g:pymode_options_colorcolumn = 1
+"let g:pymode_lint_on_fly = 1
+"let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'mccabe']
+"let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime']
+"
 let g:jedi#use_splits_not_buffers = "left"
 
 let g:cpp_class_scope_highlight = 1
