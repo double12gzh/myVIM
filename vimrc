@@ -30,6 +30,7 @@ Plug 'rodjek/vim-puppet'                                          " Puppet nicet
 Plug 'kien/ctrlp.vim'                                             " Fuzzy file, buffer, mru, tag, etc finder(https://github.com/kien/ctrlp.vim)
 Plug 'davidhalter/jedi-vim'                                       " Using the jedi autocompletion library for VIM
 Plug 'fatih/vim-go'
+Plug 'SirVer/ultisnips'
 Plug 'majutsushi/tagbar'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
