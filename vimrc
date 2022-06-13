@@ -172,6 +172,7 @@ nnoremap <leader>gt :SignifyToggle<CR>
 nnoremap <leader>gh :SignifyToggleHighlight<CR>
 nnoremap <leader>gr :SignifyRefresh<CR>
 nnoremap <leader>gd :SignifyDebug<CR>
+nnoremap <leader>ff :GoFillStruct<CR>
 
 " hunk jumping
 nmap <leader>gj <plug>(signify-next-hunk)
