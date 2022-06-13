@@ -188,7 +188,9 @@ ctrl + V: 在当前 tab 中垂直打开预览
 	
 `ctrl + t` 使用 FZF搜索
 	
-	
+## 21. snippets
+https://github.com/fatih/vim-go/blob/master/gosnippets/UltiSnips/go.snippets
+
 ## 其它：
 [vim docker 镜像](https://hub.docker.com/r/double12gzh/centos_with_vim)
 
