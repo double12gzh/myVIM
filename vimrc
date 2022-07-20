@@ -10,42 +10,65 @@ set cscopetag
 
 filetype off                                                        " required!
 
+" begin: 防止 vim 太卡
+au Filetype go,javascript,python,vim,shell,ruby,c,css,html setlocal synmaxcol=300
+let g:matchparen_timeout = 20
+let g:matchparen_insert_timeout = 20
+set nocursorcolumn
+set norelativenumber
+set lazyredraw
+" end: 防止 vim 太卡
+
+" 将less,scss识别为css autocmd BufRead,BufNewFile *.less,*.scss set filetype=css
+autocmd BufRead,BufNewFile *.nim,*.nimble set filetype=nim
+" 将xtpl,vue识别为html
+autocmd BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
+" 识别markdown文件
+autocmd BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md set filetype=markdown
+" Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
+autocmd BufRead,BufNewFile *.go set autowrite
+
+" 打开文件时，自动定位到上次光标位置
+if has ("autocmd")
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \    exe "normal g'\"" |
+        \ endif
+endif
+
 call plug#begin()
 
 Plug 'mbbill/undotree'
 Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 "添加到 bashrc 中用于配置fzf 的preview 的窗口
 " export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 
-"Plug 'jistr/vim-nerdtree-tabs'
+Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'dgryski/vim-godef'
+Plug 'dgryski/vim-godef', {'for': ['go']}
+Plug 'fatih/vim-go', {'for': ['go'], 'do': ':GoInstallBinaries'}
 Plug 'ervandew/supertab'                                          " Perform all your vim insert mode completions with Tab(https://github.com/ervandew/supertab)
 Plug 'flazz/vim-colorschemes'                                     " Color Schema(https://github.com/flazz/vim-colorschemes)
 Plug 'https://github.com/nvie/vim-flake8.git'
-Plug 'rodjek/vim-puppet'                                          " Puppet niceties for your Vim setup(https://github.com/rodjek/vim-puppet)
+"Plug 'rodjek/vim-puppet'                                          " Puppet niceties for your Vim setup(https://github.com/rodjek/vim-puppet)
 Plug 'kien/ctrlp.vim'                                             " Fuzzy file, buffer, mru, tag, etc finder(https://github.com/kien/ctrlp.vim)
-Plug 'davidhalter/jedi-vim'                                       " Using the jedi autocompletion library for VIM
-Plug 'fatih/vim-go'
 Plug 'SirVer/ultisnips'
 Plug 'majutsushi/tagbar'
 Plug 'bling/vim-airline'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 "begin: markdown
-Plug 'suan/vim-instant-Markdown'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
+Plug 'suan/vim-instant-Markdown', {'for': 'markdown'}
+Plug 'godlygeek/tabular', {'for': 'markdown'}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
 "end: markdown
 
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
-"Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
 " vim-scripts repos
 Plug 'will133/vim-dirdiff'
@@ -118,15 +141,14 @@ endif
 Plug 'w0rp/ale'
 " 对应语言需要安装相应的检查工具
 " https://github.com/w0rp/ale
-"    let g:ale_linters_explicit = 1                                 " 除g:ale_linters指定，其他不可用
-"    let g:ale_linters = {
-"\   'cpp': ['cppcheck','clang','gcc'],
-"\   'c': ['cppcheck','clang', 'gcc'],
-"\   'python': ['pylint'],
-"\   'bash': ['shellcheck'],
-"\   'go': ['golint'],
-"\}
-"
+let g:ale_linters_explicit = 1                                 " 除g:ale_linters指定，其他不可用
+let g:ale_linters = {
+\   'cpp': ['cppcheck','clang','gcc'],
+\   'c': ['cppcheck','clang', 'gcc'],
+\   'python': ['pylint'],
+\   'bash': ['shellcheck'],
+\   'go': ['golint'],
+\}
 
 let g:ale_sign_column_always = 1
 let g:ale_completion_delay = 500
@@ -266,6 +288,8 @@ set foldmethod=indent                                               " fold based
 set foldnestmax=3                                                   " deepest fold is 3 levels
 set nofoldenable                                                    " dont fold by default
 
+set rtp+=/root/.fzf/bin/fzf
+
 " Leader setting
 let mapleader = ","                                                 " rebind <Leader> key
 
@@ -293,6 +317,7 @@ map <c-h> <c-w>h
 " tabs
 map <Leader>, <esc>:tabprevious<CR>
 map <Leader>. <esc>:tabnext<CR>
+nnoremap <leader>n :tabnew<CR>
 
 " sort
 vnoremap <Leader>s :sort<CR>
@@ -490,11 +515,12 @@ inoremap { {<CR>}<ESC>O
 
 " https://github.com/fatih/vim-go/wiki/Tutorial
 set autowrite
-let g:AutoClosePreserveDotReg = 0
+"let g:AutoClosePreserveDotReg = 0
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
-let g:go_fillstruct_mode = "gopls"
+let g:go_fillstruct_mode = "fillstruct"
+"let g:go_fillstruct_mode = "gopls"
 let g:go_version_warning = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -508,13 +534,12 @@ let g:godef_split=2
 let g:go_version_warning = 0
 let g:go_fmt_autosave = 1
 let g:go_textobj_include_function_doc = 1
-
 let g:go_highlight_types = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
 let g:go_code_completion_icase = 0
-let g:go_auto_type_info = 1
-let g:go_auto_sameids = 1
+let g:go_auto_type_info = 0
+let g:go_auto_sameids = 0
 let g:go_doc_popup_window = 1
 
 " end: vim-go
@@ -544,19 +569,19 @@ inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Es
             \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
 
 " python-mode
-"let g:pymode_options_max_line_length=120
-"let g:pymode=1
-"let g:pymode_lint = 1
-"let g:pymode_lint_on_write = 1
-"let g:pymode_lint_unmodified = 0
-"let g:pymode_lint_message = 1
-"let g:pymode_syntax = 1
-"let g:pymode_syntax_all = 1
-"let g:pymode_options_colorcolumn = 1
-"let g:pymode_lint_on_fly = 1
-"let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'mccabe']
-"let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime']
-"
+let g:pymode_options_max_line_length=120
+let g:pymode=1
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_unmodified = 0
+let g:pymode_lint_message = 1
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_options_colorcolumn = 1
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'mccabe']
+let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime']
+
 let g:jedi#use_splits_not_buffers = "left"
 
 let g:cpp_class_scope_highlight = 1
@@ -578,3 +603,48 @@ if has("persistent_undo")
     let &undodir=target_path
     set undofile
 endif
+
+augroup go
+  autocmd!
+  " 不在设置全局绑定
+  autocmd FileType go nmap <C-g> :GoDeclsDir<cr>
+  autocmd FileType go imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+
+  " Show by default 4 spaces for a tab
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+  " :GoBuild and :GoTestCompile
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+  " :GoTest
+  autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+  " :GoRun
+  autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+  " :GoImplements
+  autocmd FileType go nmap <leader>i  <Plug>(go-implements)
+
+  " :GoCaller
+  autocmd FileType go nmap <leader>cr  <Plug>(go-callers)
+
+  " :GoCallees
+  autocmd FileType go nmap <leader>ce  <Plug>(go-calleres)
+
+  " :GoCoverageToggle
+  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+  " :GoMetaLinter
+  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+
+  " :GoDef but opens in a vertical split
+  autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
+  " :GoDef but opens in a horizontal split
+  autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+
+  " :GoAlternate  commands :A, :AV, :AS and :AT
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
