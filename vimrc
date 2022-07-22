@@ -47,7 +47,6 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'dgryski/vim-godef', {'for': ['go']}
 Plug 'fatih/vim-go', {'for': ['go'], 'do': ':GoInstallBinaries'}
 Plug 'ervandew/supertab'                                          " Perform all your vim insert mode completions with Tab(https://github.com/ervandew/supertab)
 Plug 'flazz/vim-colorschemes'                                     " Color Schema(https://github.com/flazz/vim-colorschemes)
