@@ -47,6 +47,8 @@ export GO111MODULE=on
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/go/bin:/home/.go/bin
 export DIR=/usr/local
 export LD_LIBRARY_PATH=:/usr/local/lib
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
