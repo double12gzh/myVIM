@@ -14,6 +14,9 @@ export DISPLAY=localhost:0.0
 eval $(dircolors -b $HOME/.dircolors)
 eval "$(direnv hook zsh)"
 
+export HISTCONTROL=erasedups:ignorespace
+export HISTSIZE=5000
+
 export PATH=/root/anaconda3/bin:$PATH
 umask 0022
 
